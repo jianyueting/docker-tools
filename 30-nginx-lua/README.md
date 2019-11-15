@@ -17,6 +17,7 @@ Docker nginx lua
 |----|----|----|
 |/initcode|GET|行删除redis中的旧数据，再从mysql数据库中初始化数据到redis中，可以每天定时任务调用此连接，更新最新数据|
 |/syscode|GET|从redis中获取对应字典数据|
+|/updatecode|GET|从数据库中更新code的数据到redis中|
 
 程序调用的lua脚本存放在/data中，具体配置看lua-server配置。
 
