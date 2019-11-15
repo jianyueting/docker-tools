@@ -5,7 +5,7 @@ Docker开发记录
 2. docker在生产环境上是以服务启动，startup.sh里不能以后台运行方式调用服务。比如 sshd，不能调用 `/etc/init.d/ssh start`，而要用 `/usr/sbin/sshd -D`，不然docker run -d 不能正常启动服务。
 3. Dockerfile 最终以CMD调用startup.sh，不用ENTRYPOINT。测试时可以自定义命令参数，然后调用startup.sh来测试。
 
-nginx-lua redis mysql 配合使用脚本
+nginx-lua、 redis、 mysql 配合使用脚本
 
 ```shell
 #!/usr/bin/env bash
@@ -19,13 +19,50 @@ docker network ls | grep -q network11 || (echo "create network network11" && doc
 
 #启动redis
 echo "Starting redis server"
+docker rm redis-server &>/dev/null
 docker run --net network11 --hostname redis-server --name redis-server --rm -d -v ${base}/redis-data:/data -p 6379:6379 debian-redis
 
 #启动mysql
 echo "Starting mysql server"
-docker run --net network11 --hostname mysql-server --name mysql-server --rm -d -v ${base}/mysql-data:/data -p 3306:3306 debian-mysql-5.7 /wait-for-it.sh redis-server:6379 /startup.sh
+docker rm mysql-server &>/dev/null
+docker run --net network11 --hostname mysql-server --name mysql-server --rm -d -v ${base}/mysql-data:/data -p 3306:3306 debian-mysql-5.7 /wait-for-it.sh redis-server:6379 -- /startup.sh
 
 #启动nginx-lua
 echo "Starting nginx server"
-docker run --net network11 --hostname nginx-server --name nginx-server --rm -d -v /path/to/lua/scripts/directory:/data -p 80:80 debian-nginx-lua /wait-for-it.sh mysql-server:3306 /startup.sh
+docker rm nginx-server &>/dev/null
+docker run --net network11 --hostname nginx-server --name nginx-server --rm -d -v /path/to/lua/scripts/directory:/data -p 80:80 debian-nginx-lua /wait-for-it.sh mysql-server:3306 -- /startup.sh
+```
+
+elasticsearch 集群、 logstash、 kibana 配合使用脚本
+
+```shell
+#!/usr/bin/env bash
+
+#base=$(pwd)
+base=/tmp
+#创建网络
+docker network ls | grep -q network12 || (echo "create network network12" && docker network create network12 &>/dev/null)
+
+#要使用wait-for脚本，logstash和kibana要在elasticsearch启动完成后才能启动
+
+#启动elasticsearch集群
+mkdir -p ${base}/node2 &>/dev/null
+docker rm elastic-node2 &>/dev/null
+docker run --rm -d -v ${base}/node2:/var/lib/elasticsearch --net=network12 --name=elastic-node2 --hostname=elastic-node2 debian-elasticsearch
+
+mkdir -p ${base}/node3 &>/dev/null
+docker rm elastic-node3 &>/dev/null
+docker run -d -v ${base}/node3:/var/lib/elasticsearch --net=network12 --name=elastic-node3 --hostname=elastic-node3 debian-elasticsearch
+
+mkdir -p ${base}/node1 &>/dev/null
+docker rm elastic-node1 &>/dev/null
+docker run -d -v ${base}/node1:/var/lib/elasticsearch -p 9200:9200 -p 9300:9300 --net=network12 --name=elastic-node1 --hostname=elastic-node1 debian-elasticsearch
+
+#启动logstash
+docker rm logstash &>/dev/null
+docker run -d -v /path/to/logstash/config/file:/etc/logstash/conf.d --net=network12 --name=logstash --hostname=logstash debian-logstash /wait-for-it.sh elastic-node1:9200 -- /startup.sh
+
+#启动kibana
+docker rm kibana &>/dev/null
+docker run -d -p 5601:5601 --net=network12 --name=kibana --hostname=kibana debian-kibana /wait-for-it.sh elastic-node1:9200 -- /startup.sh
 ```
