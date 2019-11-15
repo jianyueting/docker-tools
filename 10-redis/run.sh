@@ -10,5 +10,6 @@ base=/tmp
 data_dir=${base}/redis-data
 
 mkdir -p ${data_dir}
-
-docker run -d -p 6379:6379 -v ${data_dir}:/data debian-redis
+docker rm redis-server &>/dev/null
+docker run --rm -d -p 6379:6379 -v ${data_dir}:/data --name redis-server debian-redis
+docker exec -it redis-server bash
