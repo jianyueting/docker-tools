@@ -1,0 +1,41 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /data;
+
+	index index.html index.htm;
+
+	server_name _;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+    #从数据库初始化数据到redis中
+    location /initcode {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST;
+        keepalive_timeout 0;
+        content_by_lua_file /data/initcode.lua;
+    }
+
+    #直接查询redis中数据返回，参数为code
+    location /syscode {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST;
+        keepalive_timeout 0;
+        content_by_lua_file /data/syscode.lua;
+    }
+
+    #从数据库中更新数据到redis中，参数为code
+    location /updatecode {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST;
+        keepalive_timeout 0;
+        content_by_lua_file /data/updatecode.lua;
+    }
+}
