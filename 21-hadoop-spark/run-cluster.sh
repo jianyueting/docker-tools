@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
-
+source ../base_functions.sh
 num=2
 #base=$(pwd)
 base="/tmp"
-docker network ls | grep -q spark || (echo "create network spark" && docker network create spark) 
+create_network spark
 
 for i in $(seq 1 ${num});do
     echo "Start hadoop datanode${i} ..."
     mkdir ${base}/data-${i} &>/dev/null
-    docker rm -f spark-datanode${i} &>/dev/null
+    remove_image spark-datanode${i}
     docker run -d --rm --net=spark -v ${base}/data-${i}:/data --name spark-datanode${i} --hostname spark-datanode${i} debian-hadoop-spark &>/dev/null
 done
 
 echo "Start hadoop namenode ..."
 
-docker rm -f spark-namenode &>/dev/null
+remove_image spark-namenode
 mkdir ${base}/name &>/dev/null
 docker run --rm -d --net=spark -v ${base}/name:/data \
     -p 8080:8080 -p 4040:4040 -p 7077:7077 -p 6066:6066\
@@ -23,4 +23,4 @@ docker run --rm -d --net=spark -v ${base}/name:/data \
     -p 19888:19888 \
     --name spark-namenode --hostname spark-namenode debian-hadoop-spark &>/dev/null
 
-docker exec -it spark-namenode bash
+connect_to_image spark-namenode
