@@ -64,5 +64,5 @@ docker run -d -v /path/to/logstash/config/file:/etc/logstash/conf.d --net=networ
 
 #启动kibana
 docker rm kibana &>/dev/null
-docker run -d -p 5601:5601 --net=network12 --name=kibana --hostname=kibana debian-kibana /wait-for-it.sh elastic-node1:9200 -- /startup.sh
+docker run -d -p 5601:5601 -v /path/to/kibana/config/file:/etc/kibana --net=network12 --name=kibana --hostname=kibana debian-kibana /wait-for-it.sh elastic-node1:9200 -- /startup.sh
 ```
