@@ -1,0 +1,13 @@
+[mysqld]
+port                        = 3306
+bind-address                = 0.0.0.0
+socket                      = /tmp/mysql.sock
+datadir                     = /data
+tmpdir                      = /tmp
+skip-host-cache
+skip-name-resolve
+character-set-server        = utf8mb4
+collation-server            = utf8mb4_general_ci
+character_set_server        = utf8mb4
+collation_server            = utf8mb4_general_ci
+lower_case_table_names      = 1
