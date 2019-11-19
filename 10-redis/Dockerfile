@@ -11,4 +11,5 @@ RUN apt-get update \
 
 EXPOSE 6379
 VOLUME /data
-CMD ["/usr/bin/redis-server" , "/etc/redis.conf"]
+
+CMD ["/startup.sh"]
