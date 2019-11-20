@@ -9,6 +9,7 @@ function create_network() {
 #根据名称删除已经在运行的image
 function remove_image() {
     image=${1}
+    docker kill ${image} &>/dev/null
     docker rm -f ${image} &>/dev/null   
 }
 
