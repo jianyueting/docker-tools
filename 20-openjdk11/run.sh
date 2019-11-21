@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
-#########################################################################
-# File Name: run.sh
-# Author: jeff
-# mail: jeff_jian@126.com
-# Created Time: Fri Nov 15 10:19:18 2019
-#########################################################################
+
+#当前目录
+function current_directory(){
+    file=${1}
+    dir=$(dirname ${file})
+    echo $(realpath ${dir})
+}
+#父目录
+function parent_directory(){
+    file=${1}
+    dir=$(dirname ${file})/..
+    echo $(realpath ${dir})
+}
+
+source $(parent_directory $0)/base-functions.sh
 
 docker run --rm -it debian-openjdk11 bash

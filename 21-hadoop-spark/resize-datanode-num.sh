@@ -15,7 +15,7 @@ for i in $(seq 1 ${n});do
     echo spark-datanode${i} >>hadoop/slaves
 done
 
-sed -i "/^num=/d;2anum=${n}" run-cluster.sh
+sed -i "/^num=/d;17anum=${n}" run-cluster.sh
 
 docker rmi debian-hadoop-spark &>/dev/null
 docker build . -t debian-hadoop-spark
