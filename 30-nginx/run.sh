@@ -15,8 +15,8 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-remove_image nginx_lua
+remove_image nginx
 #直接将lua-server映射到sites-enabled中
-docker run --rm -d -v $(current_directory $0)/data:/data -v $(current_directory)/conf:/etc/nginx/sites-enabled -p 80:80 --name nginx-lua debian-nginx-lua
+docker run --rm -d -v $(current_directory $0)/www:/data -v $(current_directory $0)/conf:/etc/nginx/sites-enabled -p 80:80 --name nginx debian-nginx &>/dev/null
 
-connect_to_image nginx-lua
+connect_to_image nginx
