@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-/mongodb/bin/mongod --dbpath /data &
+/mongodb/bin/mongod --bind_ip_all --dbpath /data &
 
 tail -f /dev/null
