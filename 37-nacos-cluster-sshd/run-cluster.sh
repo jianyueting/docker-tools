@@ -30,7 +30,7 @@ done
 for i in $(seq 1 3);do
     mkdir ${base}/nacos-data${i} &>/dev/null
     remove_image nacos${i}
-    docker run --rm -d --net nacos -p 884${i}:8848 -v ${config_file}:/nacos/conf/cluster.conf -v ${base}/nacos-data${i}:/data --hostname nacos${i} --name nacos${i} debian-nacos-cluster-sshd &>/dev/null
+    docker run --rm -d --net nacos -p 884${i}:8848 -v ${base}/nacos-data${i}:/data --hostname nacos${i} --name nacos${i} debian-nacos-cluster-sshd &>/dev/null
 done
 
 connect_to_image nacos1
