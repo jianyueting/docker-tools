@@ -18,13 +18,10 @@ source $(parent_directory $0)/base-functions.sh
 base=/tmp
 
 create_network mysql
-
-mkdir -p ${base}/mysql-data2 &>/dev/null
-remove_image mysql-2
-docker run --rm -d --net mysql -v ${base}/mysql-data2:/data --hostname mysql-2 --name mysql-2 debian-mysql5.7-cluster &>/dev/null
-
-mkdir -p ${base}/mysql-data1 &>/dev/null
-remove_image mysql-1
-docker run --rm -d --net mysql -p 3306:3306 -v ${base}/mysql-data1:/data --hostname mysql-1 --name mysql-1 debian-mysql5.7-cluster &>/dev/null
+for i in 2 1;do
+    mkdir -p ${base}/mysql-data${i} &>/dev/null
+    remove_image mysql-${i}
+    docker run --rm -d --net mysql -p $(expr 3305 + ${i}):3306 -v ${base}/mysql-data${i}:/data --hostname mysql-${i} --name mysql-${i} debian-mysql5.7-cluster &>/dev/null
+done
 
 connect_to_image mysql-1

@@ -14,6 +14,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list-bak \
     && apt-get update \
     && apt-get upgrade -y\
     && apt-get install curl net-tools procps -y \
+    && rm /bin/sh && ln -s bash /bin/sh \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apt/* /var/lib/apt/*
 
