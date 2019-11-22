@@ -18,6 +18,6 @@ source $(parent_directory $0)/base-functions.sh
 base=/tmp
 
 mkdir -p ${base}/kafka-data &>/dev/null
-docker run -d --name kafka --rm -v ${base}/kafka-data:/data debian-kafka &>/dev/null
+docker run -d --name kafka --rm -v ${base}/kafka-data:/data -p 9092:9092 debian-kafka &>/dev/null
 
 connect_to_image kafka
