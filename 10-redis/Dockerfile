@@ -6,6 +6,7 @@ RUN apt-get update  && apt-get upgrade -y \
     && apt-get install redis -y \
     && rm -rf /var/lib/apt/* /var/cache/apt/*
 
+COPY startup.sh /startup.sh
 EXPOSE 6379
 VOLUME /data
 
