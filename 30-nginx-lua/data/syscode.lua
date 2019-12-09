@@ -32,10 +32,27 @@ addRows(args,args2);
 local code = args['code']
 
 if type == nil or type == '' or code == nil or code == '' then
-    local res = {code = 0,data = {},timestamp = os.date("%s")}
+    local res = {code = 0,msg="",data = {},timestamp = os.date("%s")}
+    --获取最大的100个
+    local info = redis:zrange("dict-score", -100, -1)
+    for m,n in ipairs(info) do
+        local r = redis:lrange(m, 0, -1)
+        local d = {}
+        for i,j in ipairs(r)do
+            d[i] = JSON.decode(j)
+        end
+        res.data[m]=d
+    end
     ngx.say(JSON.decode(res))
 else
-    local res = {code = 0,data = {},timestamp = os.date("%s")}
+    --记录热数据
+    local score = redis:zscore("dict-score",code)
+    if score == nil then
+        score = 0
+    end
+    redis:zadd("dict-score",score + 1,code)
+    --获取数据
+    local res = {code = 0,msg="",data = {},timestamp = os.date("%s")}
     local info = redis:lrange(code,0,-1)
     for m,n in ipairs(info) do
         res.data[m] = JSON.decode(n)

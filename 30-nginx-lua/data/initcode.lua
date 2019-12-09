@@ -36,7 +36,7 @@ for row in rows(conn ,"SELECT code,value,label from vw_dict group by code") do
     redis:lpush(row.code,string)
 end
 
-val res = {code = 0,data = {},timestamp = os.date("%s")}
+val res = {code = 0,msg="",data = {},timestamp = os.date("%s")}
 ngx.say(JSON.decode(res))
 
 conn:close()

@@ -13,11 +13,11 @@ Docker nginx lua
 
 路径说明
 
-|路径|请求方法|说明|
-|----|----|----|
-|/initcode|GET|行删除redis中的旧数据，再从mysql数据库中初始化数据到redis中，可以每天定时任务调用此连接，更新最新数据|
-|/syscode|GET|从redis中获取对应字典数据|
-|/updatecode|GET|从数据库中更新code的数据到redis中|
+|路径|请求方式|参数|说明|
+|----|----|----|----|
+|/initcode|GET|无|行删除redis中的旧数据，再从mysql数据库中初始化数据到redis中，可以每天定时任务调用此连接，更新最新数据|
+|/syscode|GET|code|从redis中获取对应字典数据，如果没有参数则获取最新的100条热数据|
+|/updatecode|GET|code|从数据库中更新code的数据到redis中|
 
 程序调用的lua脚本存放在/data中，具体配置看lua-server配置。
 

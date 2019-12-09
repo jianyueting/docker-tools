@@ -52,7 +52,7 @@ for row in rows(conn ,"SELECT code,value,label from vw_dict where code ='"..code
     redis:lpush(row.code,string)
 end
 
-local res = {code = 0,data = {},timestamp = os.date("%s")}
+local res = {code = 0,msg="",data = {},timestamp = os.date("%s")}
 ngx.say(JSON.decode(res))
 
 conn:close()
