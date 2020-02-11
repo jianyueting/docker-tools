@@ -14,9 +14,5 @@ function parent_directory(){
 }
 
 source $(parent_directory $0)/base-functions.sh
-#base=$(pwd)
-base=/tmp
 
-docker run -d --rm --name nacos -p 8848:8848 -v ${base}/nacos-data:/data debian-nacos &>/dev/null
-
-connect_to_image nacos
+docker run --rm -it debian-openjdk11 bash

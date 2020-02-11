@@ -1,4 +1,4 @@
-FROM debian:10.1
+FROM debian:10.2
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
@@ -13,7 +13,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list-bak \
     && echo "deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free\ndeb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free\ndeb http://mirrors.ustc.edu.cn/debian-security/ stable/updates main non-free contrib" > /etc/apt/sources.list \
     && apt-get update \
     && apt-get upgrade -y\
-    && apt-get install curl net-tools procps -y \
+    && apt-get install curl net-tools procps nano -y \
     && rm /bin/sh && ln -s bash /bin/sh \
     && echo "Asia/Shanghai" > /etc/timezone \
     && rm -rf /var/cache/apt/* /var/lib/apt/*

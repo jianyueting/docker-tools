@@ -8,7 +8,7 @@ Docker nginx lua
 返回数据格式如下，code为0表示正常返回，data包含具体字典数据，timestamp为当前系统时间秒数
 
 ```json
-{"code":0,"data":[{...},...],"timestamp":...}
+{"code":0,"msg":"","data":[{"code":"","value":"","label":""},{}],"timestamp":...}
 ```
 
 路径说明

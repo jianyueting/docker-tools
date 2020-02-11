@@ -1,4 +1,4 @@
-FROM debian-base
+FROM debian-nginx
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 

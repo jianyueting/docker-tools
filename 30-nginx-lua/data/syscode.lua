@@ -7,7 +7,7 @@ redis:set_timeout(2000)
 local ok,err = redis:connect("redis-server-ip",6379)
 
 if not ok then
-    ngx.say("redis连接失败",err)
+    ngx.say('{"code":1,"msg":"redis连接失败'..err..'","timestamp":'.. os.date("%s") ..'}')
     return
 end
 
