@@ -13,7 +13,7 @@ RUN apt-get update && apt-get upgrade -y\
         && curl https://www.softking.top/zulu7.34.0.5-ca-jdk7.0.242-linux_amd64.deb -o /zulu7.34.0.5-ca-jdk7.0.242-linux_amd64.deb && dpkg -i /zulu7.34.0.5-ca-jdk7.0.242-linux_amd64.deb \
         && rm -f /zulu7.34.0.5-ca-jdk7.0.242-linux_amd64.deb
 
-ENV JAVA_HOME=/usr/lib/jvm/zulu-7-amd64 \
-    PATH=${JAVA_HOME}/bin:${PATH}
+ENV JAVA_HOME=/usr/lib/jvm/zulu-7-amd64
+ENV PATH=${JAVA_HOME}/bin:${PATH}
 
 CMD ["/bin/bash"]

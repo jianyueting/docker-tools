@@ -21,12 +21,18 @@ USER hadoop
 
 RUN chmod 700 ~/.ssh && ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
-ENV JAVA_HOME=/usr/lib/jvm/zulu-8-amd64 \
-    HADOOP_HOME=/hadoop HADOOP_INSTALL=/hadoop HADOOP_MAPRED_HOME=/hadoop HADOOP_HDFS_HOME=/hadoop HADOOP_COMMON_HOME=/hadoop HADOOP_CONF_DIR=/hadoop/etc/hadoop \
-    YARN_HOME=/hadoop YARN_CONF_DIR=/hadoop/etc/hadoop \
-    SPARK_HOME=/spark \
-    LD_LIBRARY_PATH=/hadoop/lib/native \
-    PATH=${HADOO_HOME}/bin:${HADOO_HOME}/sbin:${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${JAVA_HOME}/bin:${PATH} 
+ENV JAVA_HOME=/usr/lib/jvm/zulu-8-amd64
+ENV HADOOP_HOME=/hadoop
+ENV HADOOP_INSTALL=/hadoop
+ENV HADOOP_MAPRED_HOME=/hadoop
+ENV HADOOP_HDFS_HOME=/hadoop
+ENV HADOOP_COMMON_HOME=/hadoop
+ENV HADOOP_CONF_DIR=/hadoop/etc/hadoop
+ENV YARN_HOME=/hadoop
+ENV YARN_CONF_DIR=/hadoop/etc/hadoop
+ENV SPARK_HOME=/spark
+ENV LD_LIBRARY_PATH=/hadoop/lib/native
+ENV PATH=${HADOO_HOME}/bin:${HADOO_HOME}/sbin:${SPARK_HOME}/bin:${SPARK_HOME}/sbin:${JAVA_HOME}/bin:${PATH} 
 
 # HDFS ports
 EXPOSE 9000 50010 50020 50070 50075 50090 14000

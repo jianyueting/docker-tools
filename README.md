@@ -7,6 +7,8 @@ Docker开发记录
 
 生成容器命名规则：将目录名的前2位数值修改为debian。目录名前2位数值包含了一定的依赖关系，数值小的先生成。编号大的容器可能依赖编号小的容器。所有容器都依赖debian-base。
 
+docker run 参数 --restart=unless-stopped 可以保持运动，重启docker后也会持续运行。
+
 nginx-lua、 redis、 mysql 配合使用脚本
 
 ```shell

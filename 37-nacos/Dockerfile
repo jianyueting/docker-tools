@@ -12,6 +12,6 @@ RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/* /var/cache/apt
 
 COPY startup.sh /startup.sh
 EXPOSE 8848
-VOLUME /data
+VOLUME /data /nacos/conf
 
 CMD ["/startup.sh"]
