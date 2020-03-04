@@ -17,6 +17,6 @@ source $(parent_directory $0)/base-functions.sh
 
 remove_image nginx-zentao
 #直接将lua-server映射到sites-enabled中
-docker run --rm -d -v $(current_directory $0)/conf:/etc/nginx/sites-enabled -p 80:80 --name nginx-zentao debian-nginx-zentao &>/dev/null
+docker run --rm -d -v $(current_directory $0)/conf:/etc/nginx/sites-enabled -p 80:80 --name nginx-zentao jm-nginx-zentao &>/dev/null
 
 connect_to_image nginx-zentao

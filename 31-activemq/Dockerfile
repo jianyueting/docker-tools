@@ -1,11 +1,9 @@
-FROM debian-openjdk8
+FROM jm-openjdk8
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
-RUN apt-get update && apt-get upgrade -y \
-    && rm -rf /var/lib/apt/* /var/cache/apt/* \
-    && curl https://mirrors.ustc.edu.cn/apache/activemq/5.15.10/apache-activemq-5.15.10-bin.tar.gz -o /apache-activemq-5.15.10-bin.tar.gz \
-    && tar xf /apache-activemq-5.15.10-bin.tar.gz && ln -s /apache-activemq-5.15.10 activemq && rm /apache-activemq-5.15.10-bin.tar.gz
+RUN jm_download https://mirrors.ustc.edu.cn/apache/activemq/5.15.10/apache-activemq-5.15.10-bin.tar.gz -o /activemq.tgz \
+ && jm_untar /activemq.tgz && ln -s /apache-activemq-5.15.10 activemq
 
 ENV ACTIVEMQ_HOME=/activemq
 ENV PATH=${ACTIVEMQ_HOME}/bin:${PATH}

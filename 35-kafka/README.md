@@ -1,4 +1,4 @@
-Docker kafka
+kafka
 ====
 
 ### 说明

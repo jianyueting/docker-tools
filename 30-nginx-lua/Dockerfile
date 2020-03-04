@@ -1,15 +1,13 @@
-FROM debian-nginx
+FROM jm-nginx
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install lua-nginx-redis lua-json lua-sql-mysql -y  \
-    && rm -rf /var/lib/apt/* /var/cache/apt/*
+RUN jm_install_pkgs lua-nginx-redis lua-json lua-sql-mysql
 
 COPY startup.sh /startup.sh
 
 EXPOSE 80
 
-VOLUME /data
+VOLUME /data /etc/nginx/sites-enabled
 
 CMD ["/startup.sh"]

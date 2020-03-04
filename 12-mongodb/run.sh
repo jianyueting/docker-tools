@@ -20,6 +20,6 @@ base=/tmp
 
 remove_image mongodb
 mkdir -p ${base}/mongodb-data &>/dev/null
-docker run -d --rm -v ${base}/mongodb-data:/data -p 27017:27017 --name mongodb debian-mongodb &>/dev/null
+docker run -d --rm -v ${base}/mongodb-data:/data -p 27017:27017 --name mongodb jm-mongodb &>/dev/null
 
 connect_to_image mongodb

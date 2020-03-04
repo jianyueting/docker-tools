@@ -23,7 +23,7 @@ create_network nacos
 for i in 2 1;do
     mkdir -p ${base}/mysql-data${i} &>/dev/null
     remove_image mysql-${i}
-    docker run --rm -d --net nacos -p $(expr 3305 + ${i}):3306 -v ${base}/mysql-data${i}:/data --hostname mysql-${i} --name mysql-${i} debian-mysql5.7-cluster &>/dev/null
+    docker run --rm -d --net nacos -p $(expr 3305 + ${i}):3306 -v ${base}/mysql-data${i}:/data --hostname mysql-${i} --name mysql-${i} jm-mysql5.7-cluster &>/dev/null
 done
 
 connect_to_image mysql-1

@@ -1,4 +1,4 @@
-Docker kibana
+kibana
 ====
 
 ### 说明

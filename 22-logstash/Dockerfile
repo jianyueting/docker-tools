@@ -1,10 +1,9 @@
-FROM debian-openjdk11
+FROM jm-openjdk11
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
-#RUN curl -L https://artifacts.elastic.co/downloads/logstash/logstash-7.5.2.deb -o /elasticsearch-7.5.2-amd64.deb && dpkg -i /elasticsearch-7.5.2-amd64.deb && rm /elasticsearch-7.5.2-amd64.deb 
-
-RUN curl -L https://www.softking.top/logstash-7.5.2.deb -o /logstash-7.5.2.deb && dpkg -i /logstash-7.5.2.deb && rm /logstash-7.5.2.deb
+#RUN jm_download https://artifacts.elastic.co/downloads/logstash/logstash-7.5.2.deb /logstash-7.5.2.deb && jm_install_debs /logstash-7.5.2.deb
+RUN jm_download https://www.softking.top/logstash-7.5.2.deb /logstash-7.5.2.deb && jm_install_debs /logstash-7.5.2.deb
 
 COPY startup.sh /startup.sh
 

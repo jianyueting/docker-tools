@@ -1,4 +1,4 @@
-Docker Zookeeper
+Zookeeper
 ====
 
 ### 说明

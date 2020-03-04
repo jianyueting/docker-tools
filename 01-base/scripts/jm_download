@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "downloading ${2} ..." >&2
+curl "$1" -Lko "$2"

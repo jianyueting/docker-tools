@@ -7,7 +7,7 @@ for dir in $(echo */);do
     fi
     #去除排序数字和最后/字符
 	name=${dir#??-}
-    name=debian-"${name%/}"
+    name=jm-"${name%/}"
 	echo ${name}
     docker images|grep -q ${name}
     if [ $? -ne 0 ];then

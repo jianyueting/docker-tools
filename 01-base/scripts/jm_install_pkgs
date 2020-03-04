@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "installing $* ..." >&2
+apt-get update &>/dev/null
+apt-get install --no-install-recommends $* -y
+rm -rf /var/cache/apt/* /var/lib/apt/*

@@ -24,11 +24,11 @@ for id in $(seq 2 6);do
     mkdir -p ${base}/redis-data${id} &>/dev/null
     remove_image redis${id}
     docker run --rm -d -p 630${id}:6379 -v ${base}/redis-data${id}:/data -v $(current_directory $0)/redis.conf:/etc/redis.conf --net redis \
-        --hostname redis${id} --name redis${id} debian-redis-cluster &>/dev/null
+        --hostname redis${id} --name redis${id} jm-redis-cluster &>/dev/null
 done
 
 mkdir -p ${base}/redis-data1 &>/dev/null
 remove_image redis1
-docker run --rm -d -p 6301:6379 -v ${base}/redis-data1:/data -v $(current_directory $0)/redis.conf:/etc/redis.conf --net redis --hostname redis1 --name redis1 debian-redis-cluster &>/dev/null
+docker run --rm -d -p 6301:6379 -v ${base}/redis-data1:/data -v $(current_directory $0)/redis.conf:/etc/redis.conf --net redis --hostname redis1 --name redis1 jm-redis-cluster &>/dev/null
 
 connect_to_image redis1

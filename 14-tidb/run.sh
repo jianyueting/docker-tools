@@ -20,6 +20,6 @@ data_dir=${base}/tidb-data
 
 mkdir -p ${data_dir} &>/dev/null
 remove_image tidb-server
-docker run --rm -d -p 4000:4000 -v ${data_dir}:/data --name tidb-server debian-tidb &>/dev/null
+docker run --rm -d -p 4000:4000 -v ${data_dir}:/data --name tidb-server jm-tidb &>/dev/null
 
 connect_to_image tidb-server

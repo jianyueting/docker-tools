@@ -15,7 +15,9 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
+create_network elasticsearch
+
 echo "start logstash ..."
-docker run --rm -d  -v $(current_directory $0):/etc/logstash/conf.d -p 4560:4560 --name logstash debian-logstash &>/dev/null
+docker run --rm -d  -v $(current_directory $0):/etc/logstash/conf.d -p 4560:4560 --net=elasticsearch --name logstash jm-logstash &>/dev/null
 
 connect_to_image logstash

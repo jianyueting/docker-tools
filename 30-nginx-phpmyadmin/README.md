@@ -1,4 +1,4 @@
-Docker phpmyadmin
+phpmyadmin
 ====
 
 ### 说明

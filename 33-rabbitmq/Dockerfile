@@ -1,10 +1,8 @@
-FROM debian-base
+FROM jm-base
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install rabbitmq-server -y \
-    && rm -rf /var/lib/apt/* /var/cache/apt/*
+RUN jm_install_pkgs rabbitmq-server
 
 COPY startup.sh /startup.sh
 

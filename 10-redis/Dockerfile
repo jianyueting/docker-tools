@@ -1,12 +1,11 @@
-FROM debian-base
+FROM jm-base
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
-RUN apt-get update  && apt-get upgrade -y \
-    && apt-get install redis -y \
-    && rm -rf /var/lib/apt/* /var/cache/apt/*
+RUN jm_install_pkgs redis
 
 COPY startup.sh /startup.sh
+
 EXPOSE 6379
 VOLUME /data
 

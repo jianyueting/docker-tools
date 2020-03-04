@@ -22,9 +22,9 @@ mkdir -p "${base}/data" &>/dev/null
 
 echo "start elk ..."
 remove_image elk
-docker run -d --name elk --hostname debian-elk \
+docker run -d --name elk --hostname jm-elk \
     -v $(current_directory $0)/server.conf:/etc/logstash/conf.d/server.conf -v ${base}/data:/var/lib/elasticsearch \
     -p 4560:4560  -p 9200:9200 -p 9300:9300 -p 5601:5601 \
-    debian-elk &>/dev/null
+    jm-elk &>/dev/null
 
 connect_to_image elk

@@ -15,6 +15,6 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-docker run --rm -d -p 8080:8080 --name keycloak debian-keycloak
+docker run --rm -d -p 8080:8080 --name keycloak jm-keycloak
 
 connect_to_image keycloak

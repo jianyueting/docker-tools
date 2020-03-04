@@ -15,4 +15,4 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-docker run --rm -it debian-openjdk8-sshd bash
+docker run --rm -it jm-openjdk8-sshd bash

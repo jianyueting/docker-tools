@@ -1,4 +1,4 @@
-Docker consul
+consul
 ====
 
 ### 说明

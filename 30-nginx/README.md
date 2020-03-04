@@ -1,4 +1,4 @@
-Docker nginx
+nginx
 ====
 
 ### 说明

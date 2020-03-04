@@ -1,22 +1,13 @@
-FROM debian-base
+FROM jm-base
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
-#RUN apt-get update && apt-get upgrade -y \
-#    && apt-get install unzip \
-#   &&curl -L https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.2-amd64.deb -o /elasticsearch-7.5.2-amd64.deb && dpkg -i /elasticsearch-7.5.2-amd64.deb && rm /elasticsearch-7.5.2-amd64.deb \
-#    && curl -L https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.2/elasticsearch-analysis-ik-7.5.2.zip  -o /elasticsearch-analysis-ik-7.5.2.zip \
-#   && mkdir -p /usr/share/elasticsearch/plugins/ik \
-#   && unzip /elasticsearch-analysis-ik-7.5.2.zip -d /usr/share/elasticsearch/plugins/ik \
-#   && rm -rf /var/cache/apt/* /var/lib/apt/*
-
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install unzip \
-    && curl -L https://www.softking.top/elasticsearch-7.5.2-amd64.deb -o /elasticsearch-7.5.2-amd64.deb && dpkg -i /elasticsearch-7.5.2-amd64.deb && rm /elasticsearch-7.5.2-amd64.deb \
-    && curl -L https://www.softking.top/elasticsearch-analysis-ik-7.5.2.zip  -o /elasticsearch-analysis-ik-7.5.2.zip \
-    && mkdir -p /usr/share/elasticsearch/plugins/ik \
-    && unzip /elasticsearch-analysis-ik-7.5.2.zip -d /usr/share/elasticsearch/plugins/ik \
-    && rm -rf /var/cache/apt/* /var/lib/apt/*
+#RUN jm_download https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.2-amd64.deb /elasticsearch.deb \
+# && jm_download https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.2/elasticsearch-analysis-ik-7.5.2.zip /ik.zip \
+RUN jm_download https://www.softking.top/elasticsearch-7.5.2-amd64.deb /elasticsearch.deb \
+ && jm_download https://www.softking.top/elasticsearch-analysis-ik-7.5.2.zip /ik.zip \
+ && jm_install_debs /elasticsearch.deb \
+ && mkdir -p /usr/share/elasticsearch/plugins/ik && unzip /ik.zip -d /usr/share/elasticsearch/plugins/ik && rm /ik.zip
 
 COPY startup.sh /startup.sh
 

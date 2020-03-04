@@ -14,5 +14,5 @@ done
 
 sed -i "/^num=/d;17anum=${n}" run-cluster.sh
 
-docker rmi debian-hdfs &>/dev/null
-docker build . -t debian-hdfs
+docker rmi jm-hdfs &>/dev/null
+docker build . -t jm-hdfs

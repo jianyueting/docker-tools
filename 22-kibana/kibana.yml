@@ -6,8 +6,8 @@ server.host: "0.0.0.0"
 #server.rewriteBasePath: false
 #server.maxPayloadBytes: 1048576
 #server.name: "your-hostname"
-# TODO 和elasticsearch使用时，注意修改localost为elasticsearch的ip
-elasticsearch.hosts: ["http://172.25.0.2:9200","http://172.25.0.3:9200","http://172.25.0.4:9200"]
+# TODO 和elasticsearch使用时，注意修改localost为elasticsearch的ip，elasticsearch集群时,只配置一个
+elasticsearch.hosts: ["http://172.25.0.2:9200"]
 #elasticsearch.preserveHost: true
 #kibana.index: ".kibana"
 #kibana.defaultAppId: "home"

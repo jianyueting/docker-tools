@@ -1,4 +1,4 @@
-Docker nginx lua
+nginx lua
 ====
 
 ### 说明

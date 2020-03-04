@@ -1,4 +1,4 @@
-Docker Influxdb
+Influxdb
 ====
 
 ### 说明

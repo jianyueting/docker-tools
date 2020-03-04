@@ -1,4 +1,4 @@
-Docker MySQL 主从复制
+MySQL 主从复制
 ====
 
 ### 说明

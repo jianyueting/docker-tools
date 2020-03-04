@@ -22,5 +22,5 @@ create_network redis
 
 mkdir -p ${data_dir}
 remove_image redis-server
-docker run --rm -d --net redis -p 6379:6379 -v ${data_dir}:/data -v $(current_directory $0)/redis.conf:/etc/redis.conf --hostname redis-server --name redis-server debian-redis
+docker run --rm -d --net redis -p 6379:6379 -v ${data_dir}:/data -v $(current_directory $0)/redis.conf:/etc/redis.conf --hostname redis-server --name redis-server jm-redis
 connect_to_image redis-server

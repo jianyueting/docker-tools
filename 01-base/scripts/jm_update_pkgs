@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "upgrading ..." >&2
+apt-get update &>/dev/null
+apt-get upgrade -y &>/dev/null
+rm -rf /var/cache/apt/* /var/lib/apt/*

@@ -15,4 +15,4 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-docker run --rm -it debian-openjdk11 bash
+docker run --rm -it jm-openjdk11 bash

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "installing $* ..." >&2
+dpkg -i $*
+rm -f $*

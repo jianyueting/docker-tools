@@ -15,6 +15,6 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-docker run --rm -d -p 8500:8500 -p 8600:8600 --name consul debian-consul &>/dev/null
+docker run --rm -d -p 8500:8500 -p 8600:8600 --name consul jm-consul &>/dev/null
 
 connect_to_image consul

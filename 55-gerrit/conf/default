@@ -1,0 +1,20 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	index index.html index.htm;
+
+	server_name _;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+    location /gerrit {
+        auth_basic "登录";
+        auth_basic_user_file /gerrit.user;
+        proxy_pass http://localhost:8080/gerrit;
+    }
+}

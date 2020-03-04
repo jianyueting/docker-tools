@@ -1,15 +1,13 @@
-FROM debian-base
+FROM jm-base
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install nginx -y  \
-    && rm -rf /var/lib/apt/* /var/cache/apt/*
+RUN jm_install_pkgs nginx
 
 COPY startup.sh /startup.sh
 
 EXPOSE 80
 
-VOLUME /data
+VOLUME /data /etc/nginx/sites-enabled
 
 CMD ["/startup.sh"]

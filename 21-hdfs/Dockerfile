@@ -1,11 +1,11 @@
-FROM debian-openjdk8-sshd
+FROM jm-openjdk8-sshd
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
 RUN useradd hadoop -m \
-    && curl https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz -o /hadoop-2.9.2.tar.gz \
-    && tar xf /hadoop-2.9.2.tar.gz && rm /hadoop-2.9.2.tar.gz && ln -s /hadoop-2.9.2 /hadoop && chown hadoop\: -R /hadoop* \
-    && echo "hadoop ALL=(ALL:ALL) NOPASSWD: ALL" >>/etc/sudoers
+ && jm_install_pkgs sudo && echo "hadoop ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers \
+ && jm_download https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz /hadoop.tgz \
+ && jm_untar hadoop.tgz && ln -s /hadoop-2.9.2 /hadoop && chown hadoop\: -R /hadoop*
 
 COPY ssh_config /home/hadoop/.ssh/config
 COPY startup.sh /startup.sh

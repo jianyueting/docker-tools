@@ -19,6 +19,6 @@ create_network redis
 
 remove_image nginx_lua
 #直接将lua-server映射到sites-enabled中
-docker run --rm -d  --net redis -v $(current_directory $0)/data:/data -v $(current_directory $0)/conf:/etc/nginx/sites-enabled -p 80:80 --hostname nginx-lua --name nginx-lua debian-nginx-lua
+docker run --rm -d  --net redis -v $(current_directory $0)/data:/data -v $(current_directory $0)/conf:/etc/nginx/sites-enabled -p 80:80 --hostname nginx-lua --name nginx-lua jm-nginx-lua
 
 connect_to_image nginx-lua

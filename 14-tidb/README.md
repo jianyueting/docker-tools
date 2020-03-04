@@ -1,4 +1,4 @@
-Docker TiDB
+TiDB
 ====
 
 ### 说明

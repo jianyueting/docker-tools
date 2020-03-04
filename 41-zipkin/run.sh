@@ -15,6 +15,6 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-docker run -d --rm --name zipkin -p 9411:9411 debian-zipkin
+docker run -d --rm --name zipkin -p 9411:9411 jm-zipkin
 
 connect_to_image zipkin

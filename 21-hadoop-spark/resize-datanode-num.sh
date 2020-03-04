@@ -17,5 +17,5 @@ done
 
 sed -i "/^num=/d;17anum=${n}" run-cluster.sh
 
-docker rmi debian-hadoop-spark &>/dev/null
-docker build . -t debian-hadoop-spark
+docker rmi jm-hadoop-spark &>/dev/null
+docker build . -t jm-hadoop-spark

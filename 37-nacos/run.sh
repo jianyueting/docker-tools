@@ -17,8 +17,8 @@ source $(parent_directory $0)/base-functions.sh
 #base=$(pwd)
 base=/tmp
 
-#docker run -d --rm --name nacos -p 8848:8848 -v ${base}/nacos-data:/data -v $(current_directory)/conf/application.properties:/nacos/conf/application.properties debian-nacos &>/dev/null
+#docker run -d --rm --name nacos -p 8848:8848 -v ${base}/nacos-data:/data -v $(current_directory)/conf/application.properties:/nacos/conf/application.properties jm-nacos &>/dev/null
 
-docker run -d --rm --name nacos -p 8848:8848 -v ${base}/nacos-data:/data debian-nacos &>/dev/null
+docker run -d --rm --name nacos -p 8848:8848 -v ${base}/nacos-data:/data jm-nacos &>/dev/null
 
 connect_to_image nacos

@@ -24,7 +24,7 @@ for i in $(seq 1 ${num});do
     echo "Start hadoop datanode${i} ..."
     mkdir ${base}/data-${i} &>/dev/null
     remove_image hadoop-datanode${i}
-    docker run -d --rm --net=hadoop -v ${base}/data-${i}:/data --name hadoop-datanode${i} --hostname hadoop-datanode${i} debian-hadoop-spark-hive &>/dev/null
+    docker run -d --rm --net=hadoop -v ${base}/data-${i}:/data --name hadoop-datanode${i} --hostname hadoop-datanode${i} jm-hadoop-spark-hive &>/dev/null
 done
 
 echo "Start hadoop namenode ..."
@@ -38,6 +38,6 @@ docker run --rm -d --net=hadoop -v ${base}/name:/data -v ${base}/pg-data:/postgr
     -p 8030:8030 -p 8031:8031 -p 8032:8032 -p 8033:8033 -p 8040:8040 -p 8042:8042  -p 8088:8088\
     -p 19888:19888 \
 	-p 10000:10000 \
-    --name hadoop-namenode --hostname hadoop-namenode debian-hadoop-spark-hive &>/dev/null
+    --name hadoop-namenode --hostname hadoop-namenode jm-hadoop-spark-hive &>/dev/null
 
 connect_to_image hadoop-namenode

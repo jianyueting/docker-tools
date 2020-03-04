@@ -1,14 +1,14 @@
-FROM debian-openjdk8
+FROM jm-openjdk8-sshd
 
 MAINTAINER Jian Yueting <jianyueting@gmail.com>
 
 RUN useradd hadoop -m \
-    && curl https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz -o /hadoop-2.9.2.tar.gz \
-    && tar xf /hadoop-2.9.2.tar.gz && rm /hadoop-2.9.2.tar.gz && ln -s /hadoop-2.9.2 /hadoop && chown hadoop\: -R /hadoop* \
-    && curl https://mirrors.ustc.edu.cn/apache/spark/spark-2.3.4/spark-2.3.4-bin-without-hadoop.tgz -o /spark-2.3.4-bin-without-hadoop.tgz \
-    && tar xf /spark-2.3.4-bin-without-hadoop.tgz && rm /spark-2.3.4-bin-without-hadoop.tgz && ln -s /spark-2.3.4-bin-without-hadoop /spark && chown hadoop\: -R /spark* \
-    && apt-get update && apt-get upgrade -y && apt-get install sudo openssh-server openssh-client -y && rm -rf /var/cache/apt/* /var/lib/apt/* \
-    && echo "hadoop ALL=(ALL:ALL) NOPASSWD: ALL" >>/etc/sudoers && mkdir -p /run/sshd
+ && jm_install_pkgs sudo \
+ && echo "hadoop ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers \
+ && jm_download https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz /hadoop.tgz \
+ && jm_untar /hadoop.tgz && ln -s /hadoop-2.9.2 /hadoop && chown hadoop\: -R /hadoop* \
+ && jm_download https://mirrors.ustc.edu.cn/apache/spark/spark-2.3.4/spark-2.3.4-bin-without-hadoop.tgz /spark.tgz \
+ && jm_untar /spark.tgz && ln -s spark-2.3.4-bin-without-hadoop /spark && chown hadoop\: -R /spark*
 
 COPY ssh_config /home/hadoop/.ssh/config
 COPY startup.sh /startup.sh

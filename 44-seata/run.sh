@@ -15,8 +15,8 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-#docker run -d --rm -p 8091:8091 -v $(current_directory $0)/conf/file.conf:/seata/conf/file.conf --name seata debian-seata 
+#docker run -d --rm -p 8091:8091 -v $(current_directory $0)/conf/file.conf:/seata/conf/file.conf --name seata jm-seata 
 
-docker run -d --rm -p 8091:8091 --name seata debian-seata 
+docker run -d --rm -p 8091:8091 --name seata jm-seata 
 
 connect_to_image seata

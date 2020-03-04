@@ -19,6 +19,6 @@ base=/tmp
 
 remove_image influxdb
 mkdir -p ${base}/influxdb-data &>/dev/null
-docker run --rm -d -p 8086:8086 -v ${base}/influxdb-data:/data --name influxdb debian-influxdb &>/dev/null
+docker run --rm -d -p 8086:8086 -v ${base}/influxdb-data:/data --name influxdb jm-influxdb &>/dev/null
 
 connect_to_image influxdb

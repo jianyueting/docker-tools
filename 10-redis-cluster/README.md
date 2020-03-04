@@ -1,4 +1,4 @@
-Docker redis
+redis
 ====
 
 ### 说明

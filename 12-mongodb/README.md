@@ -1,4 +1,4 @@
-Docker Mongodb
+Mongodb
 ====
 
 ### 说明

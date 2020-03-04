@@ -1,4 +1,4 @@
-Docker logstash
+logstash
 ====
 
 ### 说明

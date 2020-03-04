@@ -1,4 +1,4 @@
-Docker jdk
+jdk8
 ====
 
 ### 说明

@@ -1,4 +1,4 @@
-Docker Rabbitmq
+Rabbitmq
 ====
 
 ### 说明

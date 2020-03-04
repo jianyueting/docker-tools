@@ -16,5 +16,5 @@ function parent_directory(){
 source $(parent_directory $0)/base-functions.sh
 
 remove_image rabbitmq
-docker run --rm -d -p 5672:5672 -p 15672:15672 --name rabbitmq debian-rabbitmq &>/dev/null
+docker run --rm -d -p 5672:5672 -p 15672:15672 --name rabbitmq jm-rabbitmq &>/dev/null
 connect_to_image rabbitmq

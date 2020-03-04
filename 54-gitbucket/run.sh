@@ -15,8 +15,14 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-#docker run -d --rm --name gitbucket -p 8080:8080 -v $(current_directory $0)/conf/database.conf:/data/database.conf debian-gitbucket
+create_network git
 
-docker run -d --rm --name gitbucket -p 8080:8080 debian-gitbucket
+base=/tmp
+data_dir=${base}/gitbucket-repositories
+mkdir -p ${data_dir} &>/dev/null
+
+#docker run -d --rm --name gitbucket --network git --hostname gitbucket -p 8080:8080 -p 29418:29418 -v $(current_directory $0)/conf/database.conf:/data/database.conf -v ${data_dir}:/data/repositories jm-gitbucket
+
+docker run -d --rm --name gitbucket --network git --hostname gitbucket -p 8080:8080 -p 29418:29418 -v ${data_dir}:/data/repositories  jm-gitbucket
 
 connect_to_image gitbucket

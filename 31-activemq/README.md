@@ -1,4 +1,4 @@
-Docker activemq
+activemq
 ====
 
 ### 说明
