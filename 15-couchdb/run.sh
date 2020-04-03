@@ -15,6 +15,6 @@ function parent_directory(){
 
 source $(parent_directory $0)/base-functions.sh
 
-docker run --rm -d --name skywalking --hostname skywalking -v $(current_directory $0)/conf/application.yml:/skywalking/config/application.yml -p 8080:8080 -p 11800:11800 -p 12800:12800 jm-skywalking &>/dev/null
+docker run -d --rm --name couchdb jm-couchdb
 
-connect_to_image skywalking
+connect_to_image couchdb

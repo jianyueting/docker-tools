@@ -11,4 +11,5 @@ fi
 /usr/bin/mysqld_safe --user=root --console &
 
 /wait-for-it.sh localhost:3306 -- /create_user.sh
+
 tail -f /dev/null
